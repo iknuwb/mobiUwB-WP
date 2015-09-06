@@ -1,0 +1,130 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="MobiUwB.Views.Contact.ContactPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:roundButtons="clr-namespace:MobiUwB.Controls.RoundButtons"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+    
+    <ScrollViewer
+        x:Name="LayoutRoot">
+        
+        <Grid 
+            Background="Transparent">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock 
+                Grid.Row="0" 
+                Text="{
+                    Binding Path=LocalizedResources.ContactPageTitle, 
+                    Source={StaticResource LocalizedStrings}
+                }"
+                Style="{StaticResource PhoneTextTitle1Style}"/>
+            
+            <TextBlock
+                x:Name="TitleTextBlock"
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                FontSize="{StaticResource RoundButtonDescriptionTextSize}"
+                FontWeight="Bold"/>
+            
+            <TextBlock
+                x:Name="PostalCodeAndCityTextBlock"
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                FontSize="{StaticResource RoundButtonDescriptionTextSize}"/>
+            
+            <TextBlock
+                x:Name="StreetTextBlock"
+                Grid.Row="3"
+                HorizontalAlignment="Center"
+                FontSize="{StaticResource RoundButtonDescriptionTextSize}"/>
+
+            <Rectangle 
+                Grid.Row="4"
+                Height="{StaticResource DividerHeight}"
+                Fill="{StaticResource PhoneAccentBrush}"
+                Margin="{StaticResource MarginBetweenRoundButtons}"/>
+            
+            <roundButtons:RoundButton
+                x:Name="EMailRoundButton"
+                Margin="{StaticResource MarginBetweenRoundButtons}"
+                Grid.Row="5"
+                ControlHeight="{StaticResource RoundButtonControllHeight}"
+                Height="{StaticResource RoundButtonHeight}"
+                ImageWidthHeight="{StaticResource RoundButtonImageWidthHeight}"
+                DescriptionTextSize="{StaticResource RoundButtonDescriptionTextSize}"
+                Text="{Binding Text}"
+                ImageText="{Binding ImageText}" 
+                Tap="EMailRoundButton_OnTap"/>
+
+            <roundButtons:RoundButton
+                x:Name="Phone1RoundButton"
+                Margin="{StaticResource MarginBetweenRoundButtons}"
+                Grid.Row="6"
+                ControlHeight="{StaticResource RoundButtonControllHeight}"
+                Height="{StaticResource RoundButtonHeight}"
+                ImageWidthHeight="{StaticResource RoundButtonImageWidthHeight}"
+                DescriptionTextSize="{StaticResource RoundButtonDescriptionTextSize}"
+                Text="{Binding Text}"
+                ImageText="{Binding ImageText}" 
+                Tap="Phone1RoundButton_OnTap"/>
+
+            <roundButtons:RoundButton
+                x:Name="Phone2RoundButton"
+                Margin="{StaticResource MarginBetweenRoundButtons}"
+                Grid.Row="7"
+                ControlHeight="{StaticResource RoundButtonControllHeight}"
+                Height="{StaticResource RoundButtonHeight}"
+                ImageWidthHeight="{StaticResource RoundButtonImageWidthHeight}"
+                DescriptionTextSize="{StaticResource RoundButtonDescriptionTextSize}"
+                Text="{Binding Text}"
+                ImageText="{Binding ImageText}" 
+                Tap="Phone2RoundButton_OnTap"/>
+
+            <roundButtons:RoundButton
+                x:Name="FaxRoundButton"
+                Margin="{StaticResource MarginBetweenRoundButtons}"
+                Grid.Row="8"
+                ControlHeight="{StaticResource RoundButtonControllHeight}"
+                Height="{StaticResource RoundButtonHeight}"
+                ImageWidthHeight="{StaticResource RoundButtonImageWidthHeight}"
+                DescriptionTextSize="{StaticResource RoundButtonDescriptionTextSize}"
+                Text="{Binding Text}"
+                ImageText="{Binding ImageText}" 
+                Tap="FaxRoundButton_OnTap"/>
+
+            <roundButtons:RoundButton
+                x:Name="LocalizationRoundButton"
+                Margin="{StaticResource MarginBetweenRoundButtons}"
+                Grid.Row="9"
+                ControlHeight="{StaticResource RoundButtonControllHeight}"
+                Height="{StaticResource RoundButtonHeight}"
+                ImageWidthHeight="{StaticResource RoundButtonImageWidthHeight}"
+                DescriptionTextSize="{StaticResource RoundButtonDescriptionTextSize}"
+                Text="{Binding Text}"
+                ImageText="{Binding ImageText}" 
+                Tap="LocalizationRoundButton_OnTap"/>
+        </Grid>
+    </ScrollViewer>
+</phone:PhoneApplicationPage>

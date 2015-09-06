@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="MobiUwB.Views.Settings.Templates.CheckBoxItem.View.CheckBoxDataTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}">
+
+    <Border 
+        BorderThickness="{StaticResource SettingsElementBorderThickness}"
+        BorderBrush="{StaticResource PhoneForegroundBrush}">
+        <Grid 
+            MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"
+            MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp"
+            Height="{StaticResource SettingsTemplateHeight}"
+            Background="{StaticResource DebugTemplateBackground}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <TextBlock 
+                    Text="{Binding Text}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="{StaticResource SettingsElementTextMargin}"/>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <CheckBox
+                    x:Name="CheckBox"
+                    IsHitTestVisible="False"
+                    IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                    Style="{StaticResource CheckBoxStyle1}"
+                    Margin="{StaticResource SettingsElementValueMargin}"/>
+            </Grid>
+        
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Properties>
+  <ConfigurationFile Path="http://ii.uwb.edu.pl/mobi/config.xml"/>
+  <Websites>
+    <DefaultWebsite
+        ID="e9222687-ea40-5b1a-89ba-c595714d2bbb"
+        Name="Instytut Informatyki"
+        URL="http://ii.uwb.edu.pl/mobi/?place=ii&amp;client=wp"
+        Ping="http://ii.uwb.edu.pl/mobi/?place=ii&amp;client=wp"/>
+    <Website
+        ID="e9222687-ea40-5b1a-89ba-c595714d2bbb"
+        Name="Instytut Informatyki"
+        URL="http://ii.uwb.edu.pl/mobi/?place=ii&amp;client=wp"
+        Ping="http://ii.uwb.edu.pl/mobi/?place=ii&amp;client=wp"/>
+    <Website
+        ID="c6d2ed41-35c3-5ee6-a291-17d610da87a1"
+        Name="Wydział Filologiczny"
+        URL="http://ii.uwb.edu.pl/mobi/?place=wf&amp;client=wp"
+        Ping="http://ii.uwb.edu.pl/mobi/?place=wf&amp;client=wp"/>
+  </Websites>
+</Properties>

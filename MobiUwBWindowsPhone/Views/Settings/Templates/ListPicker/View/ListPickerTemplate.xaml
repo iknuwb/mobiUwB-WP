@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="MobiUwB.Views.Settings.Templates.ListPicker.View.ListPickerTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="ListItemTemplate">
+            <Grid 
+                Height="{StaticResource SettingsTemplateHeight}"
+                HorizontalAlignment="Stretch">
+                <TextBlock 
+                    Text="{Binding}"
+                    VerticalAlignment="Center"
+                    FontSize="30"/>
+            </Grid>
+        </DataTemplate>
+
+
+        <DataTemplate x:Key="DisplayTemplate">
+            <Grid 
+                Height="40"
+                HorizontalAlignment="Right">
+                <TextBlock 
+                    Text="{Binding}"
+                    VerticalAlignment="Center"
+                    Foreground="{StaticResource PhoneForegroundBrush}"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Border 
+        BorderThickness="{StaticResource SettingsElementBorderThickness}"
+        BorderBrush="{StaticResource PhoneForegroundBrush}">
+        <Grid Tap="Grid_Tap"
+            Height="{StaticResource SettingsTemplateHeight}"
+            Background="{StaticResource DebugTemplateBackground}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid 
+                Grid.Column="0">
+                <TextBlock 
+                    Text="{Binding Text}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="{StaticResource SettingsElementTextMargin}"/>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <toolkit:ListPicker
+                    x:Name="ListPicker"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListPickerStyle}"
+                    ItemsSource="{Binding Items}"
+                    SelectedIndex="{Binding Value, Mode=TwoWay}"
+                    Margin="0, 0, 0, 0"
+                    FullModeItemTemplate="{StaticResource ListItemTemplate}"
+                    ItemTemplate="{StaticResource DisplayTemplate}"
+                    FullModeHeader="{Binding Text}"/>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

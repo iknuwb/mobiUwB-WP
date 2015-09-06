@@ -1,0 +1,190 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="MobiUwB.Views.About.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:roundButtons="clr-namespace:MobiUwB.Controls.RoundButtons"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="ListItem">
+            <roundButtons:RoundButton
+                Margin="{StaticResource MarginBetweenRoundButtons}"
+                ControlHeight="{StaticResource RoundButtonControllHeight}"
+                Height="{StaticResource RoundButtonHeight}"
+                ImageWidthHeight="{StaticResource RoundButtonImageWidthHeight}"
+                DescriptionTextSize="{StaticResource RoundButtonDescriptionTextSize}"
+                Text="{Binding Text}"
+                ImageText="{Binding ImageText}" 
+                HorizontalAlignment="Stretch"/>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+    
+    <ScrollViewer x:Name="LayoutRoot" >
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock 
+                Grid.Row="0" 
+                Text="{
+                    Binding Path=LocalizedResources.AboutPageTitle, 
+                    Source={StaticResource LocalizedStrings}
+                }"
+                Style="{StaticResource PhoneTextTitle1Style}"/>
+
+            <TextBlock
+                Text="{
+                    Binding Path=LocalizedResources.AboutPageSubtitleAuthors, 
+                    Source={StaticResource LocalizedStrings}
+                }"
+                Grid.Row="1"
+                HorizontalAlignment="Left"
+                FontSize="{StaticResource RoundButtonDescriptionTextSize}"
+                FontWeight="Bold"
+                Margin="{StaticResource AboutTextMargin}"/>
+
+            <Rectangle 
+                    Grid.Row="2"
+                    Height="{StaticResource DividerHeight}"
+                    Fill="{StaticResource PhoneAccentBrush}"
+                    Margin="{StaticResource MarginBetweenRoundButtons}"/>
+
+            <ListBox 
+                Grid.Row="3"
+                x:Name="AuthorsListBox"
+                Height="Auto"
+                HorizontalAlignment="Stretch"
+                ItemTemplate="{StaticResource ListItem}"
+                ItemsSource="{Binding}"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+
+        
+
+            <TextBlock
+                Text="{
+                    Binding Path=LocalizedResources.AboutPageSubtitleLicense, 
+                    Source={StaticResource LocalizedStrings}
+                }"
+                Grid.Row="4"
+                HorizontalAlignment="Left"
+                FontSize="{StaticResource RoundButtonDescriptionTextSize}"
+                FontWeight="Bold"
+                Margin="{StaticResource AboutTextMargin}"/>
+
+            <Rectangle 
+                Grid.Row="5"
+                Height="{StaticResource DividerHeight}"
+                Fill="{StaticResource PhoneAccentBrush}"
+                Margin="{StaticResource MarginBetweenRoundButtons}"/>
+
+
+
+            <roundButtons:RoundButton
+                x:Name="LicenseButton"
+                Grid.Row="6"
+                Margin="{StaticResource MarginBetweenRoundButtons}"
+                ControlHeight="{StaticResource RoundButtonControllHeight}"
+                Height="{StaticResource RoundButtonHeight}"
+                ImageWidthHeight="{StaticResource RoundButtonImageWidthHeight}"
+                DescriptionTextSize="{StaticResource RoundButtonDescriptionTextSize}"
+                Text="{
+                    Binding Path=LocalizedResources.AboutPageLicenseContent, 
+                    Source={StaticResource LocalizedStrings}
+                }"
+                ImageText="{Binding}" 
+                HorizontalAlignment="Stretch"/>
+
+
+
+
+            <TextBlock
+                Text="{
+                    Binding Path=LocalizedResources.AboutPageSubtitleGreetings, 
+                    Source={StaticResource LocalizedStrings}
+                }"
+                Grid.Row="7"
+                HorizontalAlignment="Left"
+                FontSize="{StaticResource RoundButtonDescriptionTextSize}"
+                FontWeight="Bold"
+                Margin="{StaticResource AboutTextMargin}"/>
+
+            <Rectangle 
+                Grid.Row="8"
+                Height="{StaticResource DividerHeight}"
+                Fill="{StaticResource PhoneAccentBrush}"
+                Margin="{StaticResource MarginBetweenRoundButtons}"/>
+
+
+
+            <Border
+                x:Name="GreetingsButton"
+                Grid.Row="9"
+                BorderThickness="1"
+                BorderBrush="{StaticResource PhoneForegroundBrush}"
+                CornerRadius="15"
+                Padding="{StaticResource MarginBetweenRoundButtons}"
+                Margin="{StaticResource MarginBetweenRoundButtons}">
+                <Grid
+                    Height="Auto">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid
+                        Grid.Column="0"
+                        Width="60">
+                        <TextBlock 
+                            Text="{Binding}"
+                            FontSize="{StaticResource RoundButtonImageWidthHeight}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe UI Symbol"/>
+                    </Grid>
+
+                    <Grid
+                        Grid.Column="1">
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Text="{
+                                Binding Path=LocalizedResources.AboutPageGreetingsContent, 
+                                Source={StaticResource LocalizedStrings}
+                            }"
+                            FontSize="{StaticResource RoundButtonDescriptionTextSize}"
+                            TextWrapping="Wrap"/>
+                    </Grid>
+                </Grid>
+            </Border>
+            
+        </Grid>
+    </ScrollViewer>
+</phone:PhoneApplicationPage>

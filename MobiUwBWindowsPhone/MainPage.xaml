@@ -1,0 +1,207 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="MobiUwB.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid 
+        x:Name="LayoutRoot" 
+        Background="{StaticResource PhoneBackgroundBrush}"
+        Loaded="LayoutRoot_Loaded">
+        
+        <phone:Pivot Name="Pivot" 
+                     Canvas.ZIndex="0" SelectionChanged="Pivot_SelectionChanged">            
+            <phone:PivotItem CacheMode="{x:Null}" Name="StartPivot">
+                <phone:PivotItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image 
+                            Grid.Column="0"
+                            Margin="5 5 5 5"
+                            Source="/Assets/AplicationIcons/ikona.png"/>
+                        
+                        <TextBlock
+                            Grid.Column="1" 
+                            Text="MobiUwB" />
+                    </Grid>
+                </phone:PivotItem.Header>
+                
+                <Grid>
+                    <phone:WebBrowser 
+                                      Name="MainWebBrowser"
+                                      Background="Black"
+                                      IsScriptEnabled="True"
+                                      Margin="0 0 0 0" 
+                                      Foreground="Black"
+                                      Opacity="0.1"
+                                      LoadCompleted="Main_WebBrowser_LoadCompleted" 
+                                      Navigating="MainWebBrowser_Navigating"
+                                      Navigated="MainWebBrowser_OnNavigated" NavigationFailed="MainWebBrowser_NavigationFailed"
+                                      />
+                </Grid>
+            </phone:PivotItem>
+
+            <phone:PivotItem CacheMode="{x:Null}" Name="InstitiutesPivot">
+                <phone:PivotItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image 
+                            Grid.Column="0"
+                            Source="/Assets/AplicationIcons/ikona.png"
+                            Margin="5 5 5 5"/>
+                        
+                        <TextBlock
+                            Grid.Column="1" 
+                            Text="Instytuty" />
+                    </Grid>
+                </phone:PivotItem.Header>
+                
+                <Grid>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="140"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Image Source="/Assets/logouwb.png"
+                                   Margin="5,5,5,5"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="Uniwersytet
+                                       w 
+                                       Bialymstoku"
+                                       TextWrapping="Wrap"
+                                       Margin="5,5,5,5"
+                                       TextAlignment="Center"
+                                       FontWeight="ExtraBold" 
+                                       FontSize="32"/>
+                        </Grid>
+                    </Grid>
+                    
+                    <Grid Grid.Row="1" 
+                          Background="{StaticResource PhoneForegroundBrush}"/>
+                    
+                    <Grid Grid.Row="2">
+                        <ListBox Name="InstitutesListBox" 
+                                 ItemsSource="{Binding}"
+                                 HorizontalContentAlignment="Stretch"
+                                 SelectionChanged="Institutes_ListBox_SelectionChanged">
+                            
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" 
+                                            Value="Stretch"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="71">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="70"/>
+                                            <RowDefinition Height="1"/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid Grid.Column="0">
+                                                <Image Source="{Binding IconPath}"
+                                                   Margin="2,2,2,2"/>
+                                            </Grid>
+
+                                            <Grid Grid.Column="1">
+                                                <TextBlock Text="{Binding Name}"
+                                                       FontWeight="ExtraBold"
+                                                       FontSize="24"
+                                                       VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Grid>
+                                        
+                                        <Grid Grid.Row="1"
+                                              Background="{StaticResource PhoneForegroundBrush}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Grid>
+            </phone:PivotItem>
+        </phone:Pivot>
+
+        <Grid Name="ProgressIndicatorScreen"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Visibility="Collapsed"
+              Canvas.ZIndex="1"
+              Background="Black"
+              Opacity="0.5">
+            
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Opacity="1">
+            
+                <TextBlock Text="Ładowanie..."
+                           HorizontalAlignment="Center"
+                           Foreground="White"/>
+                
+                <ProgressBar IsIndeterminate="True"
+                             Opacity="1"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBarIcons/refresh.png" 
+                                            Text="Odśwież" 
+                                            Click="RefreshButton_Click"/>
+
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Ustawienia"
+                                              x:Name="SettingsMenuItem"
+                                              Click="Settings_MenuItem_Click"/>
+                
+                <shell:ApplicationBarMenuItem Text="Kontakt"
+                                              x:Name="ContactMenuItem"
+                                              Click="Contact_MenuItem_Click"/>
+                
+                <shell:ApplicationBarMenuItem Text="O programie"
+                                              x:Name="AboutMenuItem"
+                                              Click="About_MenuItem_Click"/>
+                
+                <shell:ApplicationBarMenuItem Text="Wyjście"
+                                              x:Name="CloseMenuItem"
+                                              Click="Close_MenuItem_Click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
+</phone:PhoneApplicationPage>

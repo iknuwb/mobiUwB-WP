@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="MobiUwB.Views.Settings.Templates.SwitchItem.View.SwitchDataTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <UserControl.Resources>
+        <DataTemplate x:Key="SwitchExpanderTemplate">
+            <Border 
+                BorderThickness="{StaticResource SettingsElementBorderThickness}"
+                BorderBrush="{StaticResource PhoneForegroundBrush}">
+                <Grid
+                    Height="{StaticResource SettingsTemplateHeight}"
+                    Background="{StaticResource DebugTemplateBackground}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <TextBlock 
+                            Text="{Binding Text}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            Margin="{StaticResource SettingsElementTextMargin}"/>
+                    </Grid>
+
+                    <Grid 
+                        Grid.Column="1">
+                        <toolkit:ToggleSwitch 
+                            IsHitTestVisible="False"
+                            x:Name="ToggleSwitch" 
+                            IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource ToggleSwitchStyle}"
+                            Height="{StaticResource SettingsTemplateHeight}"
+                            Margin="{StaticResource SettingsElementValueMargin}">
+                        </toolkit:ToggleSwitch>
+                    </Grid>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+        <toolkit:ExpanderView 
+            Style="{StaticResource ExpanderViewStyle}"
+            x:Name="Expander" 
+            ItemsSource="{Binding Children}"
+            ItemTemplate="{StaticResource SelectingTemplate}"
+            Expander="{Binding}"
+            ExpanderTemplate="{StaticResource SwitchExpanderTemplate}"
+            Expanded="expander_Expanded" 
+            Collapsed="expander_Collapsed">
+
+        </toolkit:ExpanderView>
+</UserControl>
